@@ -1,0 +1,34 @@
+<nav class="bg-gray-300 fixed top-0 w-full h-16 z-10">
+    {% if current_user.is_authenticated %}
+    <div class="container mx-auto px-5 " >
+        <div class="flex justify-between items-center py-2">
+            <a class="flex items-center text-white text-lg" href="{{ url_for('blogpostapp.home') }}">
+                <img alt="Blog Icon" src="https://cdn.iconscout.com/icon/premium/png-256-thumb/blog-16-104521.png" class="mr-3 h-12">
+            </a>
+            <div>
+                <div class="hidden md:flex items-center space-x-4">
+                    {% if request.path != url_for('userapp.profile') %}
+                    <a href="{{ url_for('userapp.profile') }}" class="bg-gray-300 hover:bg-yellow-500 text-white py-2 px-4 rounded transition duration-300">
+                        Profile
+                    </a>
+                    {% else %}
+                    <a href="{{ url_for('blogpostapp.home') }}" class="bg-gray-300 hover:bg-yellow-500 text-white py-2 px-4 rounded transition duration-300">
+                        Home
+                    </a>
+                    {% endif %}
+                    <a href="{{ url_for('userapp.logout') }}" class="bg-gray-300 hover:bg-yellow-500 text-white py-2 px-4 rounded transition duration-300">
+                        Logout
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="container mx-auto px-5 py-2 flex justify-center">
+        <a class="flex items-center text-white text-lg" href="#">
+            <img alt="Blog Icon" src="https://cdn.iconscout.com/icon/premium/png-256-thumb/blog-16-104521.png" class="mr-3 h-12">
+        </a>
+    </div>
+    {% endif %}
+</nav>
+

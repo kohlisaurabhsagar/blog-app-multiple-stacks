@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block title %}Profile Page{% endblock %}
+{% block content %}
+<div class="container py-10 mt-10">
+    <div class="row justify-content-center" >
+        <div class="col-md-4 justify-content-center">
+            <div class="card shadow-lg" style="width: 25rem; position: relative; z-index: 1; margin-top: 80px; margin-bottom: 5px;">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0"><b></b>PROFILE</b></h5>
+                    
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editProfileModal">
+                        Edit Profile
+                    </button>
+                </div>
+                
+                <img src="https://via.placeholder.com/30" class="card-img-top" alt="User Profile Picture">
+                <div class="card-body">
+                    <h5 class="card-title"><b>Username:&nbsp;&nbsp;</b>{{ user.username }}</h5>
+                    <p class="card-text"><b>Name:&nbsp;&nbsp;</b>{{ user.first_name }} {{ user.last_name }}</p>
+                    <a href="mailto:{{ user.email }}" class="btn btn-info"><b>Email:&nbsp;</b>{{ user.email }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Profile Modal -->
+<div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editProfileModalLabel">Edit Profile</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <form>
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" class="form-control" id="username" value="{{ user.username }}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="firstName" class="form-label">First Name</label>
+                        <input type="text" class="form-control" id="firstName" value="{{ user.first_name }}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="lastName" class="form-label">Last Name</label>
+                        <input type="text" class="form-control" id="lastName" value="{{ user.last_name }}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" value="{{ user.email }}">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

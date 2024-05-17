@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title%}{% endblock %}</title>
+    {% block extra_head %}{%endblock %}
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        footer {
+            margin-top: auto;
+        }
+
+        #addblogbutton {
+            margin-top: 90px;
+            margin-bottom: 5px;
+            z-index: 1;
+
+        }
+
+        .invalid-feedback {
+            display: block;
+        }
+
+        .form-label {
+            font-weight: bold;
+        }
+
+        .form-control {
+            border-radius: 0.25rem;
+        }
+
+
+        #navbar-brand-shadow {
+            text-align: center;
+        }
+
+        #navbar-brand-shadow {
+            display: inline-block;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+        }
+
+        #flash-message {
+            transition: opacity 0.6s ease;
+
+        /* .fixed-top-container {
+            position: sticky;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            z-index: 10;
+        } */
+
+        /* .fixed-top-container {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    z-index: 1050; 
+    }
+    */
+    </style>
+
+
+</head>
+
+<body>
+    {% include 'nav.html' %}
+
+    <main>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+        <div class="border-l-5 bg-yellow-100 p-5 bg-opacity-50 fixed my-16 border-yellow-500 text-yellow-800 z-50" role="alert" id="flash-message">
+            {{ message }}
+            <button type="button" class="absolute top-1 right-2 text-xl" onclick="messageclose();">&times;</button>
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        {% block content %}
+
+        {% endblock %}
+    </main>
+
+    <aside>
+        {% block menu %}
+
+        {% endblock %}
+    </aside>
+
+    {% include 'footer.html' %}
+    <script type="text/javascript" src="{{url_for('static',filename='script.js')}}"></script>
+</body>
+
+</html>

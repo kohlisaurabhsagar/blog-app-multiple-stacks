@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block title %}SignUp Page{% endblock %}
+{% block content %}
+{% load static%}
+<div style="padding-top: 80px; padding-left: 20px; padding-right: 20px; padding-bottom: 5px;">
+    <div class="container">
+        <div class="row justify-content-end">
+            <div class="row justify-content-center align-items-center" style="min-height: 80vh;">
+                <!-- Image Column -->
+                <div class="col-md-5 justify-content-center align-items-center d-flex">
+                    <img src="{% static 'blog-icon.png' %}" alt="icon" class="img-fluid"
+                        style="max-width: 80%; height: auto;">
+                </div>
+                <div class="col-md-2 justify-content-center align-items-center d-flex">
+
+                </div>
+                <div class="col-md-5">
+                    <div class="card shadow-lg">
+                        <h5 class="card-header text-center"
+                            style="background-color: #8197b4; color: white; margin-bottom: 0;">Register</h5>
+                        <div class="card-body py-1">
+                            <form method="POST" class="needs-validation" novalidate>
+                                {% csrf_token %}
+                                {% load widget_tweaks %}
+
+                                {% for field in form %}
+                                <div class="mb-1">
+                                    <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                                    {% render_field field class="form-control" %}
+                                    {% for error in field.errors %}
+                                    <div class="invalid-feedback" style="display: block;">
+                                        {{ error }}
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                                {% endfor %}
+                                <div class="text-center mt-2">
+                                    <button type="submit" class="btn btn-primary btn-block">Register</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="card-footer text-muted text-center py-2">
+                            Already have an account? <a href="{% url 'users-login' %}"
+                                class="btn btn-link px-0">Login</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+    {% endblock %}

@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% block title %}Profile Page{% endblock %}
+{% block content %}
+<div class="container mx-auto py-3 h-full my-10 flex items-center">
+    <div class="w-full max-w-sm mx-auto">
+        <div class="bg-white shadow-2xl rounded-lg overflow-hidden">
+            <div class="px-4 py-3">
+                <div class="flex justify-between items-center">
+                    <h5 class="text-lg font-bold text-gray-900">PROFILE</h5>
+                    <button type="button"
+                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded text-sm"
+                        onclick="openModalProfile('editProfileModal')">Edit Profile</button>
+                </div>
+            </div>
+            <img src="https://via.placeholder.com/100" class="w-full" alt="User Profile Picture">
+            <div class="px-4 py-3">
+                <h5 class="text-lg"><b>Username:&nbsp;&nbsp;</b>{{ current_user.username }}</h5>
+                <p><b>Name:&nbsp;&nbsp;</b>{{ current_user.fname }} {{ current_user.lname }}</p>
+                <a href="mailto:{{ current_user.email }}"
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded block text-center mt-3 text-sm">Email:
+                    {{ current_user.email }}</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden" id="editProfileModal">
+    <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+        <div class="modal-header flex justify-between items-center p-5 border-b">
+            <h5 class="modal-title text-lg font-bold">Edit Profile</h5>
+            <button type="button" class="text-black font-semibold text-xl"
+                onclick="closeModal('editProfileModal')">×</button>
+        </div>
+        <div class="modal-body p-5">
+            <form>
+                <div class="mb-4">
+                    <label for="username" class="block text-gray-700 text-sm font-bold mb-2">Username</label>
+                    <input type="text"
+                        class="form-control shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        id="username" value="{{ current_user.username }}">
+                </div>
+                <div class="mb-4">
+                    <label for="firstName" class="block text-gray-700 text-sm font-bold mb-2">First Name</label>
+                    <input type="text"
+                        class="form-control shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        id="firstName" value="{{ current_user.fname }}">
+                </div>
+                <div class="mb-4">
+                    <label for="lastName" class="block text-gray-700 text-sm font-bold mb-2">Last Name</label>
+                    <input type="text"
+                        class="form-control shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        id="lastName" value="{{ current_user.lname }}">
+                </div>
+                <div class="mb-4">
+                    <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email</label>
+                    <input type="email"
+                        class="form-control shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        id="email" value="{{ current_user.email }}">
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer flex justify-between items-center p-5 border-t">
+            <button type="button" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
+                onclick="closeModalProfile('editProfileModal')">Close</button>
+            <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Save
+                changes</button>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
