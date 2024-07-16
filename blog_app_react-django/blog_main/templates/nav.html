@@ -1,0 +1,48 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-dark-subtle fixed-top">
+    {% if request.user.is_authenticated %}
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'index-home' %}">
+            &nbsp;&nbsp;&nbsp;
+            <img alt="Blog  Icon" width="50"
+                src="https://cdn.iconscout.com/icon/premium/png-256-thumb/blog-16-104521.png?f=webp&amp;w=256"
+                srcset="https://cdn.iconscout.com/icon/premium/png-256-thumb/blog-16-104521.png?f=webp&amp;w=256 1x, https://cdn.iconscout.com/icon/premium/png-256-thumb/blog-16-104521.png?f=webp&amp;w=512 2x">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
+
+            <ul class="navbar-nav ms-auto">
+                {% if request.path != '/users/profile/' %}
+                <li class="nav-item">
+                    <a class="nav-link btn btn btn-warning" me-2" href="{% url 'users-profile' %}"
+                        role="button">Profile</a>
+                    {% endif %}
+                    {% if request.path == '/users/profile/' %}
+                <li class="nav-item">
+                    <a class="nav-link btn btn btn-warning" me-2" href="{% url 'index-home' %}" role="button">Home</a>
+                    {% endif %}
+
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn btn-warning" href="{% url 'users-logout' %}">Logout</a>
+
+                </li>
+            </ul>
+        </div>
+
+    </div>
+    {% else %}
+    <div class="container-fluid justify-content-center">
+        <a class="navbar-brand" href="#">
+            <img alt="Blog Icon" width="50"
+                src="https://cdn.iconscout.com/icon/premium/png-256-thumb/blog-16-104521.png?f=webp&amp;w=256"
+                srcset="https://cdn.iconscout.com/icon/premium/png-256-thumb/blog-16-104521.png?f=webp&amp;w=256 1x, https://cdn.iconscout.com/icon/premium/png-256-thumb/blog-16-104521.png?f=webp&amp;w=512 2x"
+                class="d-inline-block align-top"><span>
+        </a>
+    </div>
+
+
+    {% endif %}
+</nav>

@@ -8,3 +8,11 @@ blog_app_flask/venv
 blog_app_mern/api/node_modules
 blog_app_mern/client/node_modules
 blog_app_flask/migrations
+blog_app_react-django/venv
+blog_app_react-django/client/node_modules
+blog_app_react-django/.vscode
+blog_app_react-django/blog_main/blog_main/__pycache__
+blog_app_react-django/blog_main/blogpost/__pycache__
+blog_app_react-django/blog_main/blogpost/migrations
+blog_app_react-django/blog_main/users/__pycache__
+blog_app_react-django/blog_main/users/migrations
